@@ -120,7 +120,7 @@ class Tempest(object):
         print("Please wait while tempest is being cloned. "
               "This could take a few minutes...")
         subprocess.check_call(["git", "clone",
-                               "https://github.com/openstack/tempest",
+                               "https://github.com/onecloud/tempest",
                                Tempest.base_repo])
 
     def install(self):

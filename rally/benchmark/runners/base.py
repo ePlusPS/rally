@@ -69,6 +69,15 @@ def _run_scenario_once(args):
     scenario_output = {"errors": "", "data": {}}
     try:
         with rutils.Timer() as timer:
+            scenario_fn = getattr(scenario, method_name)
+            fargs, fvargs, fkws, fdefaults = inspect.getargspec(scenario_fn)
+
+            if fkws != None:
+                kwargs["my_context"] = context
+                print("KEYWORD ARGS PRESENT")
+            else:
+                print("NO KEYWORD ARGS")
+
             scenario_output = getattr(scenario,
                                       method_name)(**kwargs) or scenario_output
     except Exception as e:
@@ -208,6 +217,7 @@ class ScenarioRunner(object):
         args = types.preprocess(cls, method_name, context, args)
 
         with rutils.Timer() as timer:
+            print("Runner context: %s" % (context))
             self._run_scenario(cls, method_name, context, args)
         return timer.duration()
 
