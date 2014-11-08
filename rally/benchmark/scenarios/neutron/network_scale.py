@@ -13,7 +13,6 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-
 from rally.benchmark.scenarios import base
 from rally.benchmark.scenarios.neutron import utils
 from rally.benchmark import validation
@@ -29,13 +28,12 @@ class NetworkScaleTesting(utils.NeutronScenario):
         Given the network_create_arg, this test will build a
         tenant(multi-tenant) network
         """
-
-        print("network create args: %s, kwargs: %s" % \ 
+        print("network create args: %s, kwargs: %s" %
               (network_create_args, kwargs))
         
         my_context = kwargs["my_context"]
 
-        print("Iteration %s User: %s" % \ 
+        print("Iteration %s User: %s" %
               (my_context["iteration"],my_context["user"]))
         self._create_network(network_create_args or {})
         self._list_networks
